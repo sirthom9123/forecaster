@@ -13,6 +13,7 @@ import datetime
 from .models import City, Location, ApiKey
 from .forms import LocationForm
 
+
 @login_required(login_url='/authentication/login')
 def index(request):
     key = settings.WEATHER_API
@@ -80,6 +81,22 @@ def history_data(request):
     page = request.GET.get('page')
     page_obj = Paginator.get_page(paginator, page)
     return render(request, 'history.html', {'cities': cities, 'page_obj': page_obj})
+
+
+def search_data(request):
+    if request.method == 'POST':
+        search_str = json.loads(request.body).get('searchText')
+        cities = City.objects.filter(
+            lat__istartswith=search_str, owner=request.user) | City.objects.filter(
+            lon__istartswith=search_str, owner=request.user) | City.objects.filter(
+            temperature__istartswith=search_str, owner=request.user) | City.objects.filter(
+            humidity__istartswith=search_str, owner=request.user) | City.objects.filter(
+            wind__istartswith=search_str, owner=request.user) | City.objects.filter(
+            description__icontains=search_str, owner=request.user) | City.objects.filter(
+            created__icontains=search_str, owner=request.user)
+        data = cities.values()
+        
+        return JsonResponse(list(data), safe=False)
 
 
 def export_csv(request):
