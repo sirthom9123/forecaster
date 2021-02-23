@@ -1,0 +1,79 @@
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block content %}    
+    {% if messages %}
+    <div class="messages">
+        {% for message in messages %}
+        <div {% if message.tags %} class="alert alert-sm alert-{{ message.tags }}"{% endif %}>{{ message }}</div>
+        {% endfor %}
+    </div>
+    {% endif %}
+
+    <!-- <div class="container"> -->
+        <div class="row" id="search">
+            <div class="col-md-8">
+                <form method="POST" id="getWeather">
+                    {% csrf_token %}
+                    {{form.media}}
+                    {{form|crispy}}
+                    <div class="form-group mt-3">
+                       <input type="submit" class="btn btn-dark" value="Search" id="searchBtn"> 
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="card" id="weatherData">
+            <div class="row">
+                {% if forecast %}
+                <div class="col-9 left">
+                    <div class="row top">
+                        <div class="col"><h6>Hourly</h6></div>
+                        <div class="col"><h5>{{forecast.hourly}}°C</h5></div>
+                        <div class="col"></div>
+                    </div>
+                    <div class="row">
+                        <div class="col-7 temp"><h4>Your forecast:</h4></div>
+                        <div class="col-7 temp">
+                            <figure class="image is-50x50">
+                                <img src="http://openweathermap.org/img/w/{{ forecast.icon }}.png" alt="Image">
+                            </figure>
+                            <h2><b>{{forecast.temperature}}°C</b></h2>
+                        </div>
+                        <div class="col-5 time">
+                            <p>Wind: {{forecast.wind}}m/s</p>
+                            <h2><b>{{forecast.city}}</b></h2>
+                            <p>{{forecast.description}} </p>
+                        </div>
+                    </div>
+                    <div class="row bottom">
+                        <div class="col">
+                            <hr>
+                        </div>
+                        <div class="col">
+                            <div class="row"></div>
+                            <div class="row">
+                                <a href="{% url 'save_forecast' %}" id="saveData" class="btn btn-secondary btn-sm">Save</a>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <hr>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+                {% if cities %}
+                <div class="col-3 right" id="historyData">
+                    <div class="row top">History</div>
+                    <div class="timely">
+                        {% for city in cities %}
+                        <div class="row">{{city.created}} &nbsp; <b>{{city.temperature}}&deg;</b></div>
+                        {% endfor %}
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+   </div>
+
+{% endblock %}
+
