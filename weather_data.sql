@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Feb 23, 2021 at 03:39 PM
+-- Generation Time: Feb 24, 2021 at 05:00 AM
 -- Server version: 10.4.17-MariaDB
 -- PHP Version: 7.4.13
 
@@ -124,7 +124,7 @@ CREATE TABLE `auth_user` (
 --
 
 INSERT INTO `auth_user` (`id`, `password`, `last_login`, `is_superuser`, `username`, `first_name`, `last_name`, `email`, `is_staff`, `is_active`, `date_joined`) VALUES
-(1, 'pbkdf2_sha256$216000$jbx0rJP8sOOb$BQF9XO0IYuICgnIghxackPpWyOLYRqJBXoWrlSv3P6U=', '2021-02-23 14:38:05.916745', 1, 'tiiseco', '', '', 'qraircorp@gmail.com', 1, 1, '2021-02-23 14:37:44.306352');
+(1, 'pbkdf2_sha256$216000$jbx0rJP8sOOb$BQF9XO0IYuICgnIghxackPpWyOLYRqJBXoWrlSv3P6U=', '2021-02-24 03:24:03.470550', 1, 'tiiseco', '', '', 'qraircorp@gmail.com', 1, 1, '2021-02-23 14:37:44.306352');
 
 -- --------------------------------------------------------
 
@@ -166,6 +166,15 @@ CREATE TABLE `django_admin_log` (
   `content_type_id` int(11) DEFAULT NULL,
   `user_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `django_admin_log`
+--
+
+INSERT INTO `django_admin_log` (`id`, `action_time`, `object_id`, `object_repr`, `action_flag`, `change_message`, `content_type_id`, `user_id`) VALUES
+(1, '2021-02-23 14:58:38.849594', '1', 'scattered clouds', 2, '[{\"changed\": {\"fields\": [\"Owner\"]}}]', 7, 1),
+(2, '2021-02-23 15:31:57.727921', '1', 'Weather', 1, '[{\"added\": {}}]', 9, 1),
+(3, '2021-02-23 15:32:10.189548', '2', 'Mapbox', 1, '[{\"added\": {}}]', 9, 1);
 
 -- --------------------------------------------------------
 
@@ -258,7 +267,8 @@ CREATE TABLE `django_session` (
 --
 
 INSERT INTO `django_session` (`session_key`, `session_data`, `expire_date`) VALUES
-('c5wvz7ja6okveedziy9t4bdhgpszmhst', '.eJxVjEEOwiAQRe_C2pCBKVNw6d4zEGBAqoYmpV0Z765NutDtf-_9l_BhW6vfel78xOIslDj9bjGkR2474Htot1mmua3LFOWuyIN2eZ05Py-H-3dQQ6_fGpFQO0gaMHEcgQdOxmULhjKyUoV4GIPVlrCQcrGoaCwapyMBOEri_QHCQjbk:1lEYpC:PUVgGSqSsnQQFGaA8sGRNSQV0hgcrNmaLPsFPfsh12M', '2021-03-09 14:38:06.030895');
+('c5wvz7ja6okveedziy9t4bdhgpszmhst', '.eJxVjEEOwiAQRe_C2pCBKVNw6d4zEGBAqoYmpV0Z765NutDtf-_9l_BhW6vfel78xOIslDj9bjGkR2474Htot1mmua3LFOWuyIN2eZ05Py-H-3dQQ6_fGpFQO0gaMHEcgQdOxmULhjKyUoV4GIPVlrCQcrGoaCwapyMBOEri_QHCQjbk:1lEYpC:PUVgGSqSsnQQFGaA8sGRNSQV0hgcrNmaLPsFPfsh12M', '2021-03-09 14:38:06.030895'),
+('u36bfsjvpr04zoe89y4x495begodhj4i', '.eJxVjEEOwiAQRe_C2pCBKVNw6d4zEGBAqoYmpV0Z765NutDtf-_9l_BhW6vfel78xOIslDj9bjGkR2474Htot1mmua3LFOWuyIN2eZ05Py-H-3dQQ6_fGpFQO0gaMHEcgQdOxmULhjKyUoV4GIPVlrCQcrGoaCwapyMBOEri_QHCQjbk:1lEkmS:tc5JKtjcNHtRBqNt95mmIFraJJHiw61MHhsJPk1JJmc', '2021-03-10 03:24:04.748372');
 
 -- --------------------------------------------------------
 
@@ -271,6 +281,14 @@ CREATE TABLE `weather_apikey` (
   `name` varchar(400) NOT NULL,
   `api_key` varchar(400) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `weather_apikey`
+--
+
+INSERT INTO `weather_apikey` (`id`, `name`, `api_key`) VALUES
+(1, 'Weather', '8f82020933061d71c959643a6e93c1fe'),
+(2, 'Mapbox', 'pk.eyJ1IjoidHRtb3RzaGFiaSIsImEiOiJja2xnbDg2ZjcwYXA5Mm5uMnFyc2Q4YWVzIn0.NX6CkwA3f98Xcyx-_t1KSw');
 
 -- --------------------------------------------------------
 
@@ -289,6 +307,16 @@ CREATE TABLE `weather_city` (
   `lon` varchar(100) DEFAULT NULL,
   `owner_id` int(11) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `weather_city`
+--
+
+INSERT INTO `weather_city` (`id`, `lat`, `description`, `temperature`, `created`, `humidity`, `wind`, `lon`, `owner_id`) VALUES
+(1, '-25.750948578669664', 'scattered clouds', '22.07', '2021-02-23 14:45:20.342372', '88', '4.63', '28.156346037073945', 1),
+(2, '-25.74674429574138', 'scattered clouds', '22.08', '2021-02-23 14:48:15.704537', '88', '4.63', '28.15739031219769', 1),
+(3, '-29.1245', 'moderate rain', '18', '2021-02-23 14:59:05.773841', '100', '3.6', '26.2862', 1),
+(4, '-25.750136853103825', 'scattered clouds', '23.82', '2021-02-23 15:36:43.491088', '73', '1.03', '28.152826978846065', 1);
 
 -- --------------------------------------------------------
 
@@ -442,7 +470,7 @@ ALTER TABLE `auth_user_user_permissions`
 -- AUTO_INCREMENT for table `django_admin_log`
 --
 ALTER TABLE `django_admin_log`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `django_content_type`
@@ -460,13 +488,13 @@ ALTER TABLE `django_migrations`
 -- AUTO_INCREMENT for table `weather_apikey`
 --
 ALTER TABLE `weather_apikey`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `weather_city`
 --
 ALTER TABLE `weather_city`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `weather_location`
