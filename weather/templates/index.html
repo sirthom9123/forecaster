@@ -9,7 +9,7 @@
     </div>
     {% endif %}
 
-    <!-- <div class="container"> -->
+    <div id="container">
         <div class="row" id="map-form">
             <div class="col-md-8">
                 <form method="POST" id="getWeather">
@@ -28,21 +28,20 @@
                 <div class="col-9 left">
                     <div class="row top">
                         <div class="col"><h6>Hourly</h6></div>
-                        <div class="col"><h5>{{forecast.hourly}}°C</h5></div>
+                        <div class="col" id="hourly"><h5>{{forecast.hourly}}°C</h5></div>
                         <div class="col"></div>
                     </div>
                     <div class="row">
                         <div class="col-7 temp"><h4>Your forecast:</h4></div>
                         <div class="col-7 temp">
                             <figure class="image is-50x50">
-                                <img src="http://openweathermap.org/img/w/{{ forecast.icon }}.png" alt="Image">
+                                <img src="http://openweathermap.org/img/w/{{ forecast.icon }}.png" alt="Temperature Icon" id="img_icon">
                             </figure>
-                            <h2><b>{{forecast.temperature}}°C</b></h2>
+                            <h2 id="temp"><b>{{forecast.temperature}}°C</b></h2>
                         </div>
                         <div class="col-5 time">
-                            <p>Wind: {{forecast.wind}}m/s</p>
-                            <h2><b>{{forecast.city}}</b></h2>
-                            <p>{{forecast.description}} </p>
+                            <p id="wind">Wind: {{forecast.wind}}m/s</p>
+                            <p id="desc">{{forecast.description}} </p>
                         </div>
                     </div>
                     <div class="row bottom">
