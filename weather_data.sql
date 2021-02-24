@@ -282,13 +282,7 @@ CREATE TABLE `weather_apikey` (
   `api_key` varchar(400) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
---
--- Dumping data for table `weather_apikey`
---
 
-INSERT INTO `weather_apikey` (`id`, `name`, `api_key`) VALUES
-(1, 'Weather', '8f82020933061d71c959643a6e93c1fe'),
-(2, 'Mapbox', 'pk.eyJ1IjoidHRtb3RzaGFiaSIsImEiOiJja2xnbDg2ZjcwYXA5Mm5uMnFyc2Q4YWVzIn0.NX6CkwA3f98Xcyx-_t1KSw');
 
 -- --------------------------------------------------------
 
