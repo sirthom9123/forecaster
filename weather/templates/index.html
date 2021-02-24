@@ -10,7 +10,7 @@
     {% endif %}
 
     <!-- <div class="container"> -->
-        <div class="row" id="search">
+        <div class="row" id="map-form">
             <div class="col-md-8">
                 <form method="POST" id="getWeather">
                     {% csrf_token %}
@@ -58,16 +58,6 @@
                         <div class="col">
                             <hr>
                         </div>
-                    </div>
-                </div>
-                {% endif %}
-                {% if cities %}
-                <div class="col-3 right" id="historyData">
-                    <div class="row top">History</div>
-                    <div class="timely">
-                        {% for city in cities %}
-                        <div class="row">{{city.created}} &nbsp; <b>{{city.temperature}}&deg;</b></div>
-                        {% endfor %}
                     </div>
                 </div>
                 {% endif %}

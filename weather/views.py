@@ -10,7 +10,7 @@ import os
 import csv
 import datetime
  
-from .models import City, Location, ApiKey
+from .models import City
 from .forms import LocationForm
 
 
@@ -22,11 +22,10 @@ def index(request):
     
     
     if request.method == "POST":
-        form = LocationForm(request.POST)    
+        form = LocationForm(request.POST or None)    
         
         if form.is_valid():  
             text = form.cleaned_data['location'].split(',')
-            print(text)
             lat = text[1]
             lon = text[0]
             
@@ -43,18 +42,18 @@ def index(request):
                 'hourly': data['hourly'][0]['temp'],
             }
             
-            
             with open('data.json', 'w') as f:
                 json.dump(forecast_data, f)
-                
-            print(forecast_data)   
-
             
         context = {'forecast': forecast_data}
         return render(request, 'index.html', context)
     
+        
     context = {'form': form}
     return render(request, 'index.html', context)
+
+
+
 
 @login_required(login_url='/authentication/login')
 def save_forecast(request):    
